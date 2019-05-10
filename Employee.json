@@ -1,0 +1,22 @@
+[ 
+  { "empid": "01",
+    "empname": "AzazDesai",
+    "empage": "25",
+    "empdesignation": "Liferay/Mule Developer"
+  },
+  { "empid": "02",
+    "empname": "Uchit Vyas",
+    "empage": "25",
+    "empdesignation": "Cloud Admin"
+  },
+  { "empid": "03",
+    "empname": "Mohib Mansuri",
+    "empage": "25",
+    "empdesignation": "Web Designer"
+  },
+  { "empid": "04",
+    "empname": "Tapan",
+    "empage": "27",
+    "empdesignation": "Liferay/Alfeshco Developer"
+  }
+]

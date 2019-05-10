@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:dropbox="http://www.mulesoft.org/schema/mule/dropbox" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/dropbox http://www.mulesoft.org/schema/mule/dropbox/3.2.2/mule-dropbox.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <dropbox:config name="Dropbox" port="8081" appKey="ppr2sh8h1is39ks" appSecret="h3v5hzqz9x6lula" doc:name="Dropbox">
+        <dropbox:oauth-callback-config domain="localhost" localPort="8081" remotePort="8081"/>
+    </dropbox:config>
+    <flow name="Processor" doc:name="Processor">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="in" doc:name="HTTP"/>
+        <http:body-to-parameter-map-transformer doc:name="Body to Parameter Map"/>
+        <logger message="MAP REQUEST: #[payload]" level="INFO" doc:name="Logger"/>
+        <choice doc:name="Choice">
+            <when expression="#[payload.get('op') == 'createF']">
+                <processor-chain>
+                    <dropbox:create-folder config-ref="Dropbox" path="#[payload['dropboxPath']]" doc:name="Create Folder"/>
+                    <json:object-to-json-transformer doc:name="Object to JSON"/>
+                </processor-chain>
+            </when>
+            <when expression="#[payload.get('op') == 'delete']">
+                <processor-chain>
+                    <dropbox:delete config-ref="Dropbox" path="#[payload['dropboxPath']]" doc:name="Delete"/>
+                    <json:object-to-json-transformer doc:name="Object to JSON"/>
+                </processor-chain>
+            </when>
+            <otherwise>
+                <processor-chain>
+                    <logger message="INVALID OPERATION" level="INFO" doc:name="Logger"/>
+                </processor-chain>
+            </otherwise>
+        </choice>
+        <logger message="Final Payload is #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="Authorize" doc:name="Authorize">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="auth" doc:name="HTTP"/>
+        <dropbox:authorize config-ref="Dropbox" doc:name="Authorize"/>
+    </flow>
+    <flow name="HTML" doc:name="HTML">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="home" doc:name="HTTP"/>
+        <http:static-resource-handler resourceBase="${app.home}/docroot" defaultFile="home.html"></http:static-resource-handler>
+    </flow>
+</mule>

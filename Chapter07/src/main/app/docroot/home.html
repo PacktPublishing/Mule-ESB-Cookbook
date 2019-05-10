@@ -1,0 +1,48 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+	
+	function processElements ( elements, style){
+		
+		for ( var i = 0; i < elements.length; i++){
+			elements[i].style.display=style;
+		}
+	}
+	
+	function updateOptions(value){
+	
+	var hideElements = document.getElementsByClassName('hidden');	
+	var showElements = document.getElementsByClassName(value);
+	
+	processElements(hideElements, 'none');
+	processElements(showElements, 'block')
+	
+	}
+	</script>
+	<!--onsubmit="this.action=document.getElementById('op').options[document.getElementById('op').selectedIndex].value;"-->
+	<form action=/in method="post">
+		Welcome to AttuneInfocom!!! <br /> <br />
+		Operation: <select id="op" name="op" onchange="updateOptions(this.options[this.selectedIndex].value);">
+		            <option value="selectoption">--Select Option--</option>
+					<option value="createF">Create Folder</option>
+					<option value="delete">Delete</option>
+				</select><br /><br />
+		
+		
+		<div class="hidden upFile createF delete downFile list getLink" id="dropboxPath">Path:<input type="text" name="dropboxPath" /></div>
+		
+	
+		<input type="submit" value="Submit"/>
+	</form>
+
+
+</body>
+</html>
