@@ -6,6 +6,9 @@ This is the code repository for [Mule ESB Cookbook ](https://prod.packtpub.com/i
 
 **Over 40 recipes to effectively build your enterprise solutions from the ground up using Mule ESB**
 
+## What is this book about?
+Mule ESB is a lightweight Java-based enterprise service bus (ESB) and integration platform that allows developers to connect applications together quickly and easily, enabling them to efficiently exchange data. You can therefore use Mule ESB to allow different applications to communicate with each other via a transit system to carry data between applications within your enterprise or across the Internet. It is also useful if you use more than one type of communication protocol while integrating three or more applications/services.
+
 This book covers the following exciting features:
 * Learn how to work with components, workflow, and patterns, and how to configure them
 * Understand message sources, processors, and properties
