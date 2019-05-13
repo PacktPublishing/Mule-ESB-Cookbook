@@ -1,6 +1,6 @@
 # Mule ESB Cookbook 
 
-<a href="https://prod.packtpub.com/in/application-development/mule-esb-cookbook?utm_source=github&utm_medium=repository&utm_campaign="><img src="" alt="Mule ESB Cookbook " height="256px" align="right"></a>
+<a href="https://prod.packtpub.com/in/application-development/mule-esb-cookbook?utm_source=github&utm_medium=repository&utm_campaign="><img src="https://prod.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/4/4/4401os_mule20esb20cookbook.jpg" alt="Mule ESB Cookbook " height="256px" align="right"></a>
 
 This is the code repository for [Mule ESB Cookbook ](https://prod.packtpub.com/in/application-development/mule-esb-cookbook?utm_source=github&utm_medium=repository&utm_campaign=), published by Packt.
 
